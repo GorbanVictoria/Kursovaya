@@ -84,16 +84,10 @@ public class To_do extends Fragment {
 
         RecyclerView recyclerView = view4.findViewById(R.id.to_do_list);
 
-        To_Do_Adapter.OnTaskClickListener taskClickListener = new To_Do_Adapter.OnTaskClickListener() {
-            @Override
-            public void onTaskClick(To_Do_OneTask task, int position) {
-                Toast.makeText(getContext(), "Был выбран пункт " + position,
-                        Toast.LENGTH_SHORT).show();
-            }
 
-        };
         // создаем адаптер
-        To_Do_Adapter adapter = new To_Do_Adapter(getContext(), tasks, taskClickListener);
+        To_Do_Adapter adapter = new To_Do_Adapter(getContext(), tasks);
+        adapter.getItemCount();
         // устанавливаем для списка адаптер
         recyclerView.setAdapter(adapter);
         return view4;
