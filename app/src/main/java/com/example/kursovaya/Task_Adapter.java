@@ -16,7 +16,7 @@ public class Task_Adapter extends RecyclerView.Adapter<Task_Adapter.ViewHolder>{
     private final LayoutInflater inflater;
     private final List<List_Task> tasks;
 
-
+//lll
 
     interface OnTaskClickListener{
         void onTaskClick(List_Task task, int position);
