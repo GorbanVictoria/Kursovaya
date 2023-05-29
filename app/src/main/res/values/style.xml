@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Calendar" >
+        <item name="cardCornerRadius">20dp</item>
+        <item name="cardBackgroundColor">@color/dark_lavanda</item>
+    </style>
+    <style name="Data" parent="Theme.AppCompat.Light">
+        <item name="cardCornerRadius">20dp</item>
+        <item name="cardBackgroundColor">@color/trans</item>
+    </style>
+    <style name="Actual" parent="Theme.AppCompat.Light">
+        <item name="cardCornerRadius">20dp</item>
+        <item name="cardBackgroundColor">@color/lemon</item>
+    </style>
+    <style name="TextInputLayout.Rounded" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
+        <item name="boxCornerRadiusBottomEnd">10dp</item>
+        <item name="boxCornerRadiusBottomStart">10dp</item>
+        <item name="boxCornerRadiusTopEnd">10dp</item>
+        <item name="boxCornerRadiusTopStart">10dp</item>
+        <item name="boxBackgroundColor">@android:color/white</item>
+    </style>
+</resources>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/startFragment">
+
+    <fragment
+        android:id="@+id/startFragment"
+        android:name="com.example.kursovaya.StartFragment"
+        android:label="fragment_start"
+        tools:layout="@layout/fragment_start" >
+        <action
+            android:id="@+id/action_startFragment_to_mainScreen"
+            app:destination="@id/mainScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainScreen"
+        android:name="com.example.kursovaya.MainScreen"
+        android:label="fragment_main_screen"
+        tools:layout="@layout/fragment_main_screen" >
+        <action
+            android:id="@+id/action_mainScreen_to_task_Lists"
+            app:destination="@id/task_Lists" />
+    </fragment>
+    <fragment
+        android:id="@+id/task_Lists"
+        android:name="com.example.kursovaya.Task_Lists"
+        android:label="fragment_task__lists"
+        tools:layout="@layout/fragment_task__lists" >
+        <action
+            android:id="@+id/action_task_Lists_to_to_do"
+            app:destination="@id/to_do" />
+    </fragment>
+    <fragment
+        android:id="@+id/to_do"
+        android:name="com.example.kursovaya.To_do"
+        android:label="fragment_to_do"
+        tools:layout="@layout/fragment_to_do" />
+</navigation>

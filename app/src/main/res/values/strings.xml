@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Kursovaya</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="underlined_name"><u>Ваше имя</u></string>
+    <string name="underlined_settings"><u>настройки</u></string>
+    <string name="underlined_tasks"><u>АКТУАЛЬНЫЕ ЗАДАЧИ</u></string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

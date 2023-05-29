@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="vertical_screen">891dp</dimen>
+    <dimen name="gorizontal_screen">411dp</dimen>
+</resources>
