@@ -109,6 +109,13 @@ public class Task_Lists extends Fragment {
                 Button profile = dialog.findViewById(R.id.profile);
                 Button lists = dialog.findViewById(R.id.lists);
                 Button sessia = dialog.findViewById(R.id.sessia);
+                disciplins.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Navigation.findNavController(view3).navigate(R.id.action_task_Lists_to_disciplines);
+                        dialog.cancel();
+                    }
+                });
                 main.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
