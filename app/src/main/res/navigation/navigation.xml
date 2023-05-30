@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_mainScreen_to_task_Lists"
             app:destination="@id/task_Lists" />
+        <action
+            android:id="@+id/action_mainScreen_to_sessia2"
+            app:destination="@id/sessia2" />
     </fragment>
     <fragment
         android:id="@+id/task_Lists"
@@ -31,10 +34,21 @@
         <action
             android:id="@+id/action_task_Lists_to_to_do"
             app:destination="@id/to_do" />
+        <action
+            android:id="@+id/action_task_Lists_to_mainScreen2"
+            app:destination="@id/mainScreen" />
+        <action
+            android:id="@+id/action_task_Lists_to_sessia2"
+            app:destination="@id/sessia2" />
     </fragment>
     <fragment
         android:id="@+id/to_do"
         android:name="com.example.kursovaya.To_do"
         android:label="fragment_to_do"
         tools:layout="@layout/fragment_to_do" />
+    <fragment
+        android:id="@+id/sessia2"
+        android:name="com.example.kursovaya.sessia"
+        android:label="fragment_sessia"
+        tools:layout="@layout/fragment_sessia" />
 </navigation>

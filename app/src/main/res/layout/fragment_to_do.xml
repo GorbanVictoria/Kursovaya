@@ -81,7 +81,7 @@
                     app:layout_constraintVertical_bias="0.0" />
 
                 <ImageButton
-                    android:id="@+id/new_task"
+                    android:id="@+id/new_task_ses"
                     android:layout_width="90dp"
                     android:layout_height="90dp"
                     android:layout_marginTop="5dp"

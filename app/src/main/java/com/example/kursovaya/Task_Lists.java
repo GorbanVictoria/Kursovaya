@@ -1,7 +1,6 @@
 package com.example.kursovaya;
 
 import android.app.Dialog;
-import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -10,7 +9,6 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.text.method.CharacterPickerDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +16,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
-
-import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 
@@ -65,8 +61,7 @@ public class Task_Lists extends Fragment {
 
 
 
-        // начальная инициализация списка
-        setInitialData();
+
         RecyclerView recyclerView = view3.findViewById(R.id.list);
 
         Task_Adapter.OnTaskClickListener taskClickListener = new Task_Adapter.OnTaskClickListener() {
@@ -94,7 +89,7 @@ public class Task_Lists extends Fragment {
         recyclerView.setAdapter(adapter);
 
         dialog = new Dialog(getContext());
-        create_new_task = view3.findViewById(R.id.new_task);
+        create_new_task = view3.findViewById(R.id.new_task_ses);
         create_new_task.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,7 +97,54 @@ public class Task_Lists extends Fragment {
             }
         });
 
+
+        ImageButton menu = view3.findViewById(R.id.menu);
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.setContentView(R.layout.menu);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                Button main = dialog.findViewById(R.id.main);
+                Button disciplins = dialog.findViewById(R.id.disciplins);
+                Button profile = dialog.findViewById(R.id.profile);
+                Button lists = dialog.findViewById(R.id.lists);
+                Button sessia = dialog.findViewById(R.id.sessia);
+                main.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Navigation.findNavController(view3).navigate(R.id.action_task_Lists_to_mainScreen2);
+                    dialog.cancel();
+                }
+            });
+                sessia.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Navigation.findNavController(view3).navigate(R.id.action_task_Lists_to_sessia2);
+                        dialog.cancel();
+                    }
+                });
+                dialog.show();
+            }
+        });
         return view3;
+
+
+//        private void showMenu(){
+//            dialog.setContentView(R.layout.menu);
+//            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//            Button main = dialog.findViewById(R.id.main);
+//            Button disciplins = dialog.findViewById(R.id.disciplins);
+//            Button profile = dialog.findViewById(R.id.profile);
+//            Button lists = dialog.findViewById(R.id.lists);
+//            Button sessia = dialog.findViewById(R.id.sessia);
+//
+//            main.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Navigation.findNavController(view3).navigate(R.id.action_task_Lists_to_mainScreen);
+//                }
+//            });
+//        }
     }
 
     private void showCreatingNewTask() {
@@ -118,17 +160,16 @@ public class Task_Lists extends Fragment {
                 Toast.makeText(getContext(), name_in, Toast.LENGTH_SHORT);
                 states.add(new List_Task(name_in));
                 dialog.cancel();
-                setInitialData();
+
             }
         });
 
         dialog.show();
     }
 
-    private void setInitialData(){
 
 
-        }
+
 
 
 

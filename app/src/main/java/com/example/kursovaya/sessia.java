@@ -14,17 +14,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link To_do#newInstance} factory method to
+ * Use the {@link sessia#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class To_do extends Fragment {
+public class sessia extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,9 +33,10 @@ public class To_do extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private ArrayList<To_Do_OneTask> tasks = new ArrayList<To_Do_OneTask>();
+    ArrayList<Sessia_task> ses = new ArrayList<>();
     ImageButton create_new_task;
-    public To_do() {
+    Dialog dialog;
+    public sessia() {
         // Required empty public constructor
     }
 
@@ -46,11 +46,11 @@ public class To_do extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment To_do.
+     * @return A new instance of fragment sessia.
      */
     // TODO: Rename and change types and number of parameters
-    public static To_do newInstance(String param1, String param2) {
-        To_do fragment = new To_do();
+    public static sessia newInstance(String param1, String param2) {
+        sessia fragment = new sessia();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -70,28 +70,11 @@ public class To_do extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-       View view4 =inflater.inflate(R.layout.fragment_to_do, container, false);
+        View view5 = inflater.inflate(R.layout.fragment_sessia, container, false);
+        // Inflate the layout for this fragment
 
-        TextView view = view4.findViewById(R.id.name_of_list);
-        String name = getArguments().getString("name");
-        view.setText(name);
-
-
-
-
-
-        tasks = (ArrayList<To_Do_OneTask>) getArguments().getSerializable("array");
-
-
-
-        RecyclerView recyclerView = view4.findViewById(R.id.to_do_list);
-// создаем адаптер
-        To_Do_Adapter adapter = new To_Do_Adapter(getContext(), tasks);
-
-        // устанавливаем для списка адаптер
-        recyclerView.setAdapter(adapter);
         dialog = new Dialog(getContext());
-        create_new_task = view4.findViewById(R.id.new_task_ses);
+        create_new_task = view5.findViewById(R.id.new_task_ses);
         create_new_task.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,37 +82,34 @@ public class To_do extends Fragment {
             }
         });
 
-
-        return view4;
+        RecyclerView recyclerView = view5.findViewById(R.id.list);
+        ses.add(new Sessia_task("name", "form","data","room"));
+        // создаем адаптер
+        Sessia_Adapter adapter = new Sessia_Adapter(getContext(), ses);
+        // устанавливаем для списка адаптер
+        recyclerView.setAdapter(adapter);
+        return view5;
     }
-
-    private void setInitialData() {
-
-
-    }
-
-    // обновление текстового поля
-    public void setSelectedItem(List_Task selectedItem) {
-
-    }
-    Dialog dialog;
     private void showCreatingNewTask() {
-        dialog.setContentView(R.layout.dialog_new_to_do);
+        dialog.setContentView(R.layout.dialog_new_sessia);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        EditText task_name, data;
+        EditText task_name, format, data, room;
         task_name = dialog.findViewById(R.id.task_name);
+        format = dialog.findViewById(R.id.format);
         data = dialog.findViewById(R.id.dead);
+        room = dialog.findViewById(R.id.room);
         Button add = dialog.findViewById(R.id.add);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String name_in = String.valueOf(task_name.getText());
                 String data_in = String.valueOf(data.getText());
+                String format_in = String.valueOf(format.getText());
+                String room_in = String.valueOf(room.getText());
                 Toast.makeText(getContext(), name_in, Toast.LENGTH_SHORT);
-                tasks.add(new To_Do_OneTask(name_in,data_in));
-                System.out.println(name_in);
+                ses.add(new Sessia_task(name_in, data_in, room_in, format_in));
                 dialog.cancel();
-                setInitialData();
+
             }
         });
 
