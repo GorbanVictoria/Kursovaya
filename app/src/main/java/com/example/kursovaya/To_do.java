@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -99,7 +100,55 @@ public class To_do extends Fragment {
             }
         });
 
-
+        ImageButton menu = view4.findViewById(R.id.menu);
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.setContentView(R.layout.menu);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                Button main = dialog.findViewById(R.id.main);
+                Button disciplins = dialog.findViewById(R.id.disciplins);
+                Button profile = dialog.findViewById(R.id.profile);
+                Button lists = dialog.findViewById(R.id.lists);
+                Button sessia = dialog.findViewById(R.id.sessia);
+                profile.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Navigation.findNavController(view4).navigate(R.id.action_to_do_to_profile2);
+                        dialog.cancel();
+                    }
+                });
+                disciplins.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Navigation.findNavController(view4).navigate(R.id.action_to_do_to_disciplines);
+                        dialog.cancel();
+                    }
+                });
+                lists.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Navigation.findNavController(view4).navigate(R.id.action_to_do_to_task_Lists);
+                        dialog.cancel();
+                    }
+                });
+                main.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Navigation.findNavController(view4).navigate(R.id.action_to_do_to_mainScreen);
+                        dialog.cancel();
+                    }
+                });
+                sessia.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Navigation.findNavController(view4).navigate(R.id.action_to_do_to_sessia2);
+                        dialog.cancel();
+                    }
+                });
+                dialog.show();
+            }
+        });
         return view4;
     }
 

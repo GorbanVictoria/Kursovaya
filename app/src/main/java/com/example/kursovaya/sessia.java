@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -88,6 +89,48 @@ public class sessia extends Fragment {
         Sessia_Adapter adapter = new Sessia_Adapter(getContext(), ses);
         // устанавливаем для списка адаптер
         recyclerView.setAdapter(adapter);
+        ImageButton menu = view5.findViewById(R.id.menu);
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.setContentView(R.layout.menu);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                Button main = dialog.findViewById(R.id.main);
+                Button disciplins = dialog.findViewById(R.id.disciplins);
+                Button profile = dialog.findViewById(R.id.profile);
+                Button lists = dialog.findViewById(R.id.lists);
+                Button sessia = dialog.findViewById(R.id.sessia);
+                disciplins.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Navigation.findNavController(view5).navigate(R.id.action_sessia2_to_disciplines);
+                        dialog.cancel();
+                    }
+                });
+                lists.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Navigation.findNavController(view5).navigate(R.id.action_sessia2_to_task_Lists);
+                        dialog.cancel();
+                    }
+                });
+                main.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Navigation.findNavController(view5).navigate(R.id.action_sessia2_to_mainScreen);
+                        dialog.cancel();
+                    }
+                });
+                profile.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Navigation.findNavController(view5).navigate(R.id.action_sessia2_to_profile2);
+                        dialog.cancel();
+                    }
+                });
+                dialog.show();
+            }
+        });
         return view5;
     }
     private void showCreatingNewTask() {

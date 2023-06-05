@@ -72,7 +72,7 @@ public class Task_Lists extends Fragment {
                 String name = state.getName();
                 bundle.putString("name",name);
 
-                state.add_el("jjfjf","dkkd");
+
                 ArrayList<To_Do_OneTask> tasks = new ArrayList<To_Do_OneTask>();
                 tasks = state.getTasks();
 
@@ -113,6 +113,13 @@ public class Task_Lists extends Fragment {
                     @Override
                     public void onClick(View v) {
                         Navigation.findNavController(view3).navigate(R.id.action_task_Lists_to_disciplines);
+                        dialog.cancel();
+                    }
+                });
+                profile.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Navigation.findNavController(view3).navigate(R.id.action_task_Lists_to_profile2);
                         dialog.cancel();
                     }
                 });

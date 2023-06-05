@@ -28,6 +28,12 @@
         <action
             android:id="@+id/action_mainScreen_to_disciplines"
             app:destination="@id/disciplines" />
+        <action
+            android:id="@+id/action_mainScreen_to_profile2"
+            app:destination="@id/profile2" />
+        <action
+            android:id="@+id/action_mainScreen_to_sessia22"
+            app:destination="@id/sessia2" />
     </fragment>
     <fragment
         android:id="@+id/task_Lists"
@@ -46,6 +52,9 @@
         <action
             android:id="@+id/action_task_Lists_to_disciplines"
             app:destination="@id/disciplines" />
+        <action
+            android:id="@+id/action_task_Lists_to_profile2"
+            app:destination="@id/profile2" />
     </fragment>
     <fragment
         android:id="@+id/to_do"
@@ -64,6 +73,9 @@
         <action
             android:id="@+id/action_to_do_to_disciplines"
             app:destination="@id/disciplines" />
+        <action
+            android:id="@+id/action_to_do_to_profile2"
+            app:destination="@id/profile2" />
     </fragment>
     <fragment
         android:id="@+id/sessia2"
@@ -73,6 +85,15 @@
         <action
             android:id="@+id/action_sessia2_to_disciplines"
             app:destination="@id/disciplines" />
+        <action
+            android:id="@+id/action_sessia2_to_task_Lists"
+            app:destination="@id/task_Lists" />
+        <action
+            android:id="@+id/action_sessia2_to_mainScreen"
+            app:destination="@id/mainScreen" />
+        <action
+            android:id="@+id/action_sessia2_to_profile2"
+            app:destination="@id/profile2" />
     </fragment>
     <fragment
         android:id="@+id/disciplines"
@@ -91,10 +112,38 @@
         <action
             android:id="@+id/action_disciplines_to_homeWork"
             app:destination="@id/homeWork" />
+        <action
+            android:id="@+id/action_disciplines_to_profile2"
+            app:destination="@id/profile2" />
     </fragment>
     <fragment
         android:id="@+id/homeWork"
         android:name="com.example.kursovaya.HomeWork"
         android:label="fragment_home_work"
-        tools:layout="@layout/fragment_home_work" />
+        tools:layout="@layout/fragment_home_work" >
+        <action
+            android:id="@+id/action_homeWork_to_disciplines"
+            app:destination="@id/disciplines" />
+        <action
+            android:id="@+id/action_homeWork_to_sessia2"
+            app:destination="@id/sessia2" />
+        <action
+            android:id="@+id/action_homeWork_to_task_Lists"
+            app:destination="@id/task_Lists" />
+        <action
+            android:id="@+id/action_homeWork_to_mainScreen"
+            app:destination="@id/mainScreen" />
+        <action
+            android:id="@+id/action_homeWork_to_profile2"
+            app:destination="@id/profile2" />
+    </fragment>
+    <fragment
+        android:id="@+id/profile2"
+        android:name="com.example.kursovaya.Profile"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profile2_to_startFragment"
+            app:destination="@id/startFragment" />
+    </fragment>
 </navigation>

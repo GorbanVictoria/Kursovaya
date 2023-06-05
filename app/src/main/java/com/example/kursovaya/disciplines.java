@@ -66,7 +66,7 @@ public class disciplines extends Fragment {
         // Inflate the layout for this fragment
 
         RecyclerView recyclerView = view6.findViewById(R.id.list);
-        states.add(new discipline_task("name","room","format"));
+
         discipline_Adapter.OnTaskClickListener taskClickListener = new discipline_Adapter.OnTaskClickListener() {
             @Override
             public void onTaskClick(discipline_task state, int position) {
@@ -74,6 +74,13 @@ public class disciplines extends Fragment {
                 String name = state.getName();
                 bundle.putString("name",name);
                 System.out.println(name);
+
+
+                ArrayList<HomeWorkTask> tasks = new ArrayList<HomeWorkTask>();
+                tasks = state.getTasks();
+
+                bundle.putSerializable("array",tasks);
+
                 Navigation.findNavController(view6).navigate(R.id.action_disciplines_to_homeWork, bundle);
                 Toast.makeText(getContext(), "Был выбран пункт " + position,
                         Toast.LENGTH_SHORT).show();
@@ -93,7 +100,48 @@ public class disciplines extends Fragment {
             }
         });
 
-
+        ImageButton menu = view6.findViewById(R.id.menu);
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.setContentView(R.layout.menu);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                Button main = dialog.findViewById(R.id.main);
+                Button disciplins = dialog.findViewById(R.id.disciplins);
+                Button profile = dialog.findViewById(R.id.profile);
+                Button lists = dialog.findViewById(R.id.lists);
+                Button sessia = dialog.findViewById(R.id.sessia);
+                profile.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Navigation.findNavController(view6).navigate(R.id.action_disciplines_to_profile2);
+                        dialog.cancel();
+                    }
+                });
+                lists.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Navigation.findNavController(view6).navigate(R.id.action_disciplines_to_task_Lists);
+                        dialog.cancel();
+                    }
+                });
+                main.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Navigation.findNavController(view6).navigate(R.id.action_disciplines_to_mainScreen);
+                        dialog.cancel();
+                    }
+                });
+                sessia.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Navigation.findNavController(view6).navigate(R.id.action_disciplines_to_sessia2);
+                        dialog.cancel();
+                    }
+                });
+                dialog.show();
+            }
+        });
         return view6;
     }
 

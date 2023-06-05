@@ -74,12 +74,12 @@
             android:text="ДИСЦИПЛИНЫ"
             android:textColor="@color/white"
             android:textSize="38dp"
-            app:layout_constraintBottom_toTopOf="@+id/list"
+            app:layout_constraintBottom_toBottomOf="@+id/new_task_ses"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.492"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.868" />
+            app:layout_constraintVertical_bias="0.126" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

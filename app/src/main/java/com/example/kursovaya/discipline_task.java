@@ -6,7 +6,7 @@ public class discipline_task {
     private String name, room, format;
 
 
-    private ArrayList<To_Do_OneTask> tasks = new ArrayList<To_Do_OneTask>();
+    private ArrayList<HomeWorkTask> tasks = new ArrayList<HomeWorkTask>();
 
     public discipline_task(String name, String room, String format){
         this.room = room;
@@ -15,7 +15,7 @@ public class discipline_task {
 
     }
 
-    public ArrayList<To_Do_OneTask> getTasks() {
+    public ArrayList<HomeWorkTask> getTasks() {
         return tasks;
     }
 
@@ -43,8 +43,8 @@ public class discipline_task {
         this.name = name;
     }
 
-//    public void add_el(String name, String data){
-//        discipline_task task = new discipline_task(name,room,format);
-//        tasks.add(task);
-//    }
+    public void add_el(String name, String data){
+        HomeWorkTask task = new HomeWorkTask(name,data);
+        tasks.add(task);
+    }
 }
