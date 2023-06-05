@@ -156,6 +156,7 @@ public class HomeWork extends Fragment {
         task_name = dialog.findViewById(R.id.task_name);
         data = dialog.findViewById(R.id.dead);
         Button add = dialog.findViewById(R.id.add);
+        //
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
