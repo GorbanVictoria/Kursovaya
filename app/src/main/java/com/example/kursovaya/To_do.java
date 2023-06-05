@@ -1,15 +1,20 @@
 package com.example.kursovaya;
 
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +36,7 @@ public class To_do extends Fragment {
     private String mParam1;
     private String mParam2;
     private ArrayList<To_Do_OneTask> tasks = new ArrayList<To_Do_OneTask>();
+    ImageButton create_new_task;
     public To_do() {
         // Required empty public constructor
     }
@@ -76,37 +82,106 @@ public class To_do extends Fragment {
 
 
         tasks = (ArrayList<To_Do_OneTask>) getArguments().getSerializable("array");
-        System.out.println(tasks.get(0).getName());
 
-        // начальная инициализация списка
-        setInitialData();
 
 
         RecyclerView recyclerView = view4.findViewById(R.id.to_do_list);
+// создаем адаптер
+        To_Do_Adapter adapter = new To_Do_Adapter(getContext(), tasks);
 
-        To_Do_Adapter.OnTaskClickListener taskClickListener = new To_Do_Adapter.OnTaskClickListener() {
-            @Override
-            public void onTaskClick(To_Do_OneTask task, int position) {
-                Toast.makeText(getContext(), "Был выбран пункт " + position,
-                        Toast.LENGTH_SHORT).show();
-            }
-
-        };
-        // создаем адаптер
-        To_Do_Adapter adapter = new To_Do_Adapter(getContext(), tasks, taskClickListener);
         // устанавливаем для списка адаптер
         recyclerView.setAdapter(adapter);
+        dialog = new Dialog(getContext());
+        create_new_task = view4.findViewById(R.id.new_task_ses);
+        create_new_task.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showCreatingNewTask();
+            }
+        });
+
+        ImageButton menu = view4.findViewById(R.id.menu);
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.setContentView(R.layout.menu);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                Button main = dialog.findViewById(R.id.main);
+                Button disciplins = dialog.findViewById(R.id.disciplins);
+                Button profile = dialog.findViewById(R.id.profile);
+                Button lists = dialog.findViewById(R.id.lists);
+                Button sessia = dialog.findViewById(R.id.sessia);
+                profile.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Navigation.findNavController(view4).navigate(R.id.action_to_do_to_profile2);
+                        dialog.cancel();
+                    }
+                });
+                disciplins.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Navigation.findNavController(view4).navigate(R.id.action_to_do_to_disciplines);
+                        dialog.cancel();
+                    }
+                });
+                lists.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Navigation.findNavController(view4).navigate(R.id.action_to_do_to_task_Lists);
+                        dialog.cancel();
+                    }
+                });
+                main.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Navigation.findNavController(view4).navigate(R.id.action_to_do_to_mainScreen);
+                        dialog.cancel();
+                    }
+                });
+                sessia.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Navigation.findNavController(view4).navigate(R.id.action_to_do_to_sessia2);
+                        dialog.cancel();
+                    }
+                });
+                dialog.show();
+            }
+        });
         return view4;
     }
 
     private void setInitialData() {
 
-        tasks.add(new To_Do_OneTask("fhhhfhf","99393"));
-        System.out.println(tasks.get(1).getName());
+
     }
 
     // обновление текстового поля
     public void setSelectedItem(List_Task selectedItem) {
 
+    }
+    Dialog dialog;
+    private void showCreatingNewTask() {
+        dialog.setContentView(R.layout.dialog_new_to_do);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        EditText task_name, data;
+        task_name = dialog.findViewById(R.id.task_name);
+        data = dialog.findViewById(R.id.dead);
+        Button add = dialog.findViewById(R.id.add);
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String name_in = String.valueOf(task_name.getText());
+                String data_in = String.valueOf(data.getText());
+                Toast.makeText(getContext(), name_in, Toast.LENGTH_SHORT);
+                tasks.add(new To_Do_OneTask(name_in,data_in));
+                System.out.println(name_in);
+                dialog.cancel();
+                setInitialData();
+            }
+        });
+
+        dialog.show();
     }
 }

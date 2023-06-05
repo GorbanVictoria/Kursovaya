@@ -19,27 +19,30 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link disciplines#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class disciplines extends Fragment {
 
-public class Task_Lists extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    ImageButton create_new_task;
-    Button create;
+
+    private String mParam1;
+    private String mParam2;
+    ArrayList<discipline_task> states = new ArrayList<discipline_task>();
     Dialog dialog;
-
-
-    ArrayList<List_Task> states = new ArrayList<List_Task>();
-
-
-    public Task_Lists() {
+    ImageButton create_new_task;
+    public disciplines() {
         // Required empty public constructor
     }
 
 
-    public static Task_Lists newInstance(String param1, String param2) {
-        Task_Lists fragment = new Task_Lists();
+    public static disciplines newInstance(String param1, String param2) {
+        disciplines fragment = new disciplines();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -50,46 +53,46 @@ public class Task_Lists extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view3 = inflater.inflate(R.layout.fragment_task__lists, container, false);
+        View view6 = inflater.inflate(R.layout.fragment_disciplines, container, false);
         // Inflate the layout for this fragment
 
+        RecyclerView recyclerView = view6.findViewById(R.id.list);
 
-
-
-        RecyclerView recyclerView = view3.findViewById(R.id.list);
-
-        Task_Adapter.OnTaskClickListener taskClickListener = new Task_Adapter.OnTaskClickListener() {
+        discipline_Adapter.OnTaskClickListener taskClickListener = new discipline_Adapter.OnTaskClickListener() {
             @Override
-            public void onTaskClick(List_Task state, int position) {
+            public void onTaskClick(discipline_task state, int position) {
                 Bundle bundle = new Bundle();
-
                 String name = state.getName();
                 bundle.putString("name",name);
+                System.out.println(name);
 
 
-                ArrayList<To_Do_OneTask> tasks = new ArrayList<To_Do_OneTask>();
+                ArrayList<HomeWorkTask> tasks = new ArrayList<HomeWorkTask>();
                 tasks = state.getTasks();
 
                 bundle.putSerializable("array",tasks);
 
-                Navigation.findNavController(view3).navigate(R.id.action_task_Lists_to_to_do, bundle);
+                Navigation.findNavController(view6).navigate(R.id.action_disciplines_to_homeWork, bundle);
                 Toast.makeText(getContext(), "Был выбран пункт " + position,
                         Toast.LENGTH_SHORT).show();
             }
         };
         // создаем адаптер
-        Task_Adapter adapter = new Task_Adapter(getContext(), states, taskClickListener);
+        discipline_Adapter adapter = new discipline_Adapter(getContext(), states, taskClickListener);
         // устанавливаем для списка адаптер
         recyclerView.setAdapter(adapter);
 
         dialog = new Dialog(getContext());
-        create_new_task = view3.findViewById(R.id.new_task_ses);
+        create_new_task = view6.findViewById(R.id.new_task_ses);
         create_new_task.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,8 +100,7 @@ public class Task_Lists extends Fragment {
             }
         });
 
-
-        ImageButton menu = view3.findViewById(R.id.menu);
+        ImageButton menu = view6.findViewById(R.id.menu);
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,70 +111,56 @@ public class Task_Lists extends Fragment {
                 Button profile = dialog.findViewById(R.id.profile);
                 Button lists = dialog.findViewById(R.id.lists);
                 Button sessia = dialog.findViewById(R.id.sessia);
-                disciplins.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Navigation.findNavController(view3).navigate(R.id.action_task_Lists_to_disciplines);
-                        dialog.cancel();
-                    }
-                });
                 profile.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Navigation.findNavController(view3).navigate(R.id.action_task_Lists_to_profile2);
+                        Navigation.findNavController(view6).navigate(R.id.action_disciplines_to_profile2);
+                        dialog.cancel();
+                    }
+                });
+                lists.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Navigation.findNavController(view6).navigate(R.id.action_disciplines_to_task_Lists);
                         dialog.cancel();
                     }
                 });
                 main.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Navigation.findNavController(view3).navigate(R.id.action_task_Lists_to_mainScreen2);
-                    dialog.cancel();
-                }
-            });
+                    @Override
+                    public void onClick(View v) {
+                        Navigation.findNavController(view6).navigate(R.id.action_disciplines_to_mainScreen);
+                        dialog.cancel();
+                    }
+                });
                 sessia.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Navigation.findNavController(view3).navigate(R.id.action_task_Lists_to_sessia2);
+                        Navigation.findNavController(view6).navigate(R.id.action_disciplines_to_sessia2);
                         dialog.cancel();
                     }
                 });
                 dialog.show();
             }
         });
-        return view3;
-
-
-//        private void showMenu(){
-//            dialog.setContentView(R.layout.menu);
-//            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//            Button main = dialog.findViewById(R.id.main);
-//            Button disciplins = dialog.findViewById(R.id.disciplins);
-//            Button profile = dialog.findViewById(R.id.profile);
-//            Button lists = dialog.findViewById(R.id.lists);
-//            Button sessia = dialog.findViewById(R.id.sessia);
-//
-//            main.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    Navigation.findNavController(view3).navigate(R.id.action_task_Lists_to_mainScreen);
-//                }
-//            });
-//        }
+        return view6;
     }
 
     private void showCreatingNewTask() {
-        dialog.setContentView(R.layout.dialog_new_task);
+        dialog.setContentView(R.layout.dialog_new_discipline);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        EditText task_name;
+        EditText task_name, room, format;
         task_name = dialog.findViewById(R.id.task_name);
+        room = dialog.findViewById(R.id.room);
+        format = dialog.findViewById(R.id.format);
         Button add = dialog.findViewById(R.id.add);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String name_in = String.valueOf(task_name.getText());
+                String room_in = String.valueOf(room.getText());
+                String format_in = String.valueOf(format.getText());
                 Toast.makeText(getContext(), name_in, Toast.LENGTH_SHORT);
-                states.add(new List_Task(name_in));
+                states.add(new discipline_task(name_in, room_in, format_in));
                 dialog.cancel();
 
             }
@@ -180,11 +168,4 @@ public class Task_Lists extends Fragment {
 
         dialog.show();
     }
-
-
-
-
-
-
-
-    }
+}

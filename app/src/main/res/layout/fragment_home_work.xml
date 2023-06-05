@@ -12,7 +12,6 @@
         android:background="@color/background">
 
 
-
         <ImageButton
             android:id="@+id/back"
             android:layout_width="77dp"
@@ -25,6 +24,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.006" />
+
         <ImageButton
             android:id="@+id/menu"
             android:layout_width="wrap_content"
@@ -52,18 +52,52 @@
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.951" />
+            app:layout_constraintVertical_bias="0.98" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list"
-            android:layout_width="360dp"
-            android:layout_height="560dp"
+            android:layout_width="329dp"
+            android:layout_height="469dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@+id/new_task_ses"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.493"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.734" />
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="350dp"
+            android:layout_height="89dp"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/raleway_black"
+            android:text="ПРАКТИЧЕСКИЕ РАБОТЫ"
+            android:textColor="@color/white"
+            android:textSize="38dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.403"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.133" />
+
+        <TextView
+            android:id="@+id/discipline_name"
+
+            android:layout_width="343dp"
+
+            android:layout_height="52dp"
+            android:fontFamily="@font/raleway_medium"
+            android:text="AAAAAAAAA"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.382"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.243" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
